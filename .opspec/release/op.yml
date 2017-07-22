@@ -1,0 +1,33 @@
+name: release
+description: releases the package
+inputs:
+  version:
+    string:
+      constraints: { format: semver }
+  dockerUsername:
+    string: {}
+  dockerPassword:
+    string:
+      isSecret: true
+  pkg:
+    dir:
+      default: .
+  dockerfile:
+    file:
+      default: .opspec/release/Dockerfile
+run:
+  serial:
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/opspec.pkg.validate#1.0.0 }
+        inputs: { pkg }
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/docker.image.build#1.0.0 }
+        inputs: { dockerfile, imageName: 'opspecpkgs/azure.apimanagement.property.set:$(version)' }
+        outputs: { imageTar }
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/docker.image.push#1.0.0 }
+        inputs:
+          imageTar:
+          imageName: 'opspecpkgs/azure.apimanagement.property.set:$(version)'
+          username: $(dockerUsername)
+          password: $(dockerPassword)

@@ -1,0 +1,69 @@
+name: github.com/opspec-pkgs/azure.apimanagement.property.set
+description: sets api management property
+inputs:
+  subscriptionId:
+    string:
+      constraints: { minLength: 1 }
+      description: id of azure subscription
+  loginId:
+    string:
+      constraints: { minLength: 1 }
+      description: id of user, service principal, or app to login with
+  loginSecret:
+    string:
+      constraints: { minLength: 1 }
+      description: secret of user, service principal, or app to login with
+      isSecret: true
+  loginTenantId:
+    string:
+      constraints: { minLength: 1 }
+      description: tenant id of user, service principal, or app to login with
+  resourceGroup:
+    string:
+      constraints: { minLength: 1 }
+      description: name of azure resource group
+  apiManagementServiceName:
+    string:
+      constraints: { minLength: 1 }
+      description: name of the api management service
+  propertyName:
+    string:
+      constraints: { minLength: 1 }
+      description: name of the property
+  propertyValue:
+    string:
+      constraints: { minLength: 1 }
+      description: value of property
+      isSecret: true
+  propertyTags:
+    string:
+      constraints: { minLength: 1 }
+      description: comma separated list of tags (tag1,tag2,tag3,...)
+  isPropertySecret:
+    string:
+      constraints: { minLength: 1 }
+      description: is property value a secret
+      default: 'false'
+  loginType:
+    string:
+      constraints: { enum: [user, sp]}
+      description: type of login; 'user' (default) or 'sp' for service principal
+      default: user
+version: 1.0.0
+run:
+  container:
+    image: { ref: 'opspecpkgs/azure.apimanagement.property.set:1.0.0' }
+    cmd: [node, /index.js]
+    files: { /index.js }
+    envVars:
+      subscriptionId:
+      loginId:
+      loginSecret:
+      loginTenantId:
+      resourceGroup:
+      apiManagementServiceName:
+      propertyName:
+      propertyValue:
+      propertyTags:
+      isPropertySecret:
+      loginType:

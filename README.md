@@ -1,5 +1,5 @@
 # Problem statement
-create/update an azure api management property
+sets an azure api management property
 
 # Example usage
 

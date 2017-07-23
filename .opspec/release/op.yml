@@ -1,6 +1,6 @@
 name: release
 description: releases the package
-inputs:
+inputs: 
   version:
     string:
       constraints: { format: semver }

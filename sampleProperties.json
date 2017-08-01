@@ -1,0 +1,17 @@
+{
+    "Property1": {
+        "value": "sampleValue1",
+        "tags": ["tag1", "tag2"],
+        "isSecret": false
+    },
+    "Property2": {
+        "value": "secretValue2",
+        "tags": ["tag2", "tag3"],
+        "isSecret": true
+    },
+    "Property3": {
+        "value": "sampleValue3",
+        "tags": [],
+        "isSecret": false
+    }
+}

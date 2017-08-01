@@ -38,7 +38,7 @@ run:
         pkg: { ref: github.com/opspec-pkgs/docker.image.push#1.1.0 }
         inputs:
           imageTar:
-          imageName: 'opspecpkgs/azure.apimanagement.property.set:$(version)'
+          imageName: 'opspecpkgs/azure.apimanagement.properties.set:$(version)'
           username: $(dockerUsername)
           password: $(dockerPassword)
     - op:
@@ -49,7 +49,7 @@ run:
         pkg: { ref: github.com/opspec-pkgs/github.release.create#1.0.0 }
         inputs:
           owner: opspec-pkgs
-          repo: azure.apimanagement.property.set
+          repo: azure.apimanagement.properties.set
           loginUsername: $(githubUsername)
           loginPassword: $(githubPassword)
           tag: $(version)

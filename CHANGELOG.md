@@ -7,3 +7,6 @@ All notable changes will be documented in this file in accordance with
 
 ## \[1.0.0] - 2017-07-21
 
+## \[2.0.0] - 2017-07-31
+
+pkg now expects properties to be input as a single json file (see 'sampleProperties.json' for example)

@@ -1,31 +1,31 @@
-[![Build Status](https://travis-ci.org/opspec-pkgs/azure.apimanagement.property.set.svg?branch=master)](https://travis-ci.org/opspec-pkgs/azure.apimanagement.property.set)
+[![Build Status](https://travis-ci.org/opspec-pkgs/azure.apimanagement.properties.set.svg?branch=master)](https://travis-ci.org/opspec-pkgs/azure.apimanagement.properties.set)
 
 # Problem statement
 
-sets an azure api management property
+sets an azure api management properties from file
 
 # Example usage
 
 > note: in examples, VERSION represents a version of the
-> azure.apimanagement.property.set pkg
+> azure.apimanagement.properties.set pkg
 
 ## install
 
 ```shell
-opctl pkg install github.com/opspec-pkgs/azure.apimanagement.property.set#VERSION
+opctl pkg install github.com/opspec-pkgs/azure.apimanagement.properties.set#VERSION
 ```
 
 ## run
 
 ```
-opctl run github.com/opspec-pkgs/azure.apimanagement.property.set#VERSION
+opctl run github.com/opspec-pkgs/azure.apimanagement.properties.set#VERSION
 ```
 
 ## compose
 
 ```yaml
 op:
-  pkg: { ref: github.com/opspec-pkgs/azure.apimanagement.property.set#VERSION }
+  pkg: { ref: github.com/opspec-pkgs/azure.apimanagement.properties.set#VERSION }
   inputs:
     subscriptionId:
     loginId:
@@ -33,11 +33,8 @@ op:
     loginTenantId:
     resourceGroup:
     apiManagementServiceName:
-    propertyName:
-    propertyValue:
+    propertiesFile:
     # begin optional args
-    propertyTags:
-    isPropertySecret:
     loginType:
     # end optional args
 ```
@@ -47,7 +44,7 @@ op:
 join us on
 [![Slack](https://opspec-slackin.herokuapp.com/badge.svg)](https://opspec-slackin.herokuapp.com/)
 or
-[open an issue](https://github.com/opspec-pkgs/azure.apimanagement.property.set/issues)
+[open an issue](https://github.com/opspec-pkgs/azure.apimanagement.properties.set/issues)
 
 # Releases
 

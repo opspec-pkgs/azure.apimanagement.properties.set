@@ -18,5 +18,5 @@ run:
         inputs: { pkg }
     - op:
         pkg: { ref: github.com/opspec-pkgs/docker.image.build#1.1.0 }
-        inputs: { dockerfile, imageName: 'opspecpkgs/azure.apimanagement.property.set:$(version)' }
+        inputs: { dockerfile, imageName: 'opspecpkgs/azure.apimanagement.properties.set:$(version)' }
         outputs: { imageTar }

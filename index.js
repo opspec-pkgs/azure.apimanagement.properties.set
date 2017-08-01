@@ -1,6 +1,6 @@
 const msRestAzure = require('ms-rest-azure');
 const { URL } = require('url');
-const properties = require('/propertyFile.json');
+const properties = require('/propertiesFile.json');
 
 const login = async () => {
     console.log('logging in');

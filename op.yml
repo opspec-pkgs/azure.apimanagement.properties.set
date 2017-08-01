@@ -26,7 +26,7 @@ inputs:
     string:
       constraints: { minLength: 1 }
       description: name of the api management service
-  propertyFile:
+  propertiesFile:
     file:
       description: |
          json properties file in the following format
@@ -47,7 +47,7 @@ run:
   container:
     image: { ref: 'opspecpkgs/azure.apimanagement.property.set:1.0.0' }
     cmd: [node, /index.js]
-    files: { /index.js, /propertyFile.json: propertyFile }
+    files: { /index.js, /propertiesFile.json: propertiesFile }
     envVars:
       subscriptionId:
       loginId:

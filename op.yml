@@ -26,7 +26,7 @@ inputs:
     string:
       constraints: { minLength: 1 }
       description: name of the api management service
-  propertiesFile:
+  properties:
     file:
       description: |
          json properties file in the following format
@@ -37,6 +37,7 @@ inputs:
                 "isSecret": true | false
             },
           }'
+          see [sampleProperties.json](sampleProperties.json) for example
   loginType:
     string:
       constraints: { enum: [user, sp]}
@@ -47,7 +48,7 @@ run:
   container:
     image: { ref: 'opspecpkgs/azure.apimanagement.properties.set:2.0.0' }
     cmd: [node, /index.js]
-    files: { /index.js, /propertiesFile.json: propertiesFile }
+    files: { /index.js, /properties.json: properties }
     envVars:
       subscriptionId:
       loginId:

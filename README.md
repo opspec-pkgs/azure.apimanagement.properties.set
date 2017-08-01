@@ -33,7 +33,7 @@ op:
     loginTenantId:
     resourceGroup:
     apiManagementServiceName:
-    propertiesFile:
+    properties:
     # begin optional args
     loginType:
     # end optional args

@@ -45,7 +45,7 @@ inputs:
 version: 2.0.0
 run:
   container:
-    image: { ref: 'opspecpkgs/azure.apimanagement.property.set:1.0.0' }
+    image: { ref: 'opspecpkgs/azure.apimanagement.properties.set:2.0.0' }
     cmd: [node, /index.js]
     files: { /index.js, /propertiesFile.json: propertiesFile }
     envVars:

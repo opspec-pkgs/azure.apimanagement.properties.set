@@ -2,7 +2,7 @@
 
 # Problem statement
 
-sets an azure api management properties from file
+sets azure api management properties (AKA named values)
 
 # Example usage
 

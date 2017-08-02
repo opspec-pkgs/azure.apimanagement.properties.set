@@ -1,5 +1,5 @@
 name: github.com/opspec-pkgs/azure.apimanagement.properties.set
-description: sets an azure api management properties from file
+description: sets azure api management properties (AKA named values)
 inputs:
   subscriptionId:
     string:

@@ -93,14 +93,32 @@ const createOrUpdate = async (credentials, property, isSecondAttempt = false) =>
     console.log('create/update api management property successful');
 };
 
+const runOperationInBatches = async (items, batchSize, operation) => {
+    let currentBatch = [];
+    const batches = items.reduce((agg, item, index) => {
+        if (index && (index % batchSize === 0)) {
+            agg.push(currentBatch);
+            currentBatch = [];
+        }
+        currentBatch.push(item)
+        return agg;
+    }, []);
+    if (currentBatch) {
+        batches.push(currentBatch);
+    }
+    for (const batch of batches) {
+        await Promise.all(batch.map(item => operation(item)));
+    }
+};
+
 Promise.resolve()
     .then(login)
     .then((creds) => {
         const props = Object.keys(properties);
-        return Promise.all(props.map(p => {
+        return runOperationInBatches(props, 10, (p) => {
             const currentProperty = Object.assign({ name: p }, properties[p]);
             return createOrUpdate(creds, currentProperty);
-        }));
+        });
     })
     .catch(error => {
         console.log(error);

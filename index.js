@@ -93,6 +93,8 @@ const createOrUpdate = async (credentials, property, isSecondAttempt = false) =>
     console.log('create/update api management property successful');
 };
 
+// utilizing batches to prvent the following error when updating large number of properties: 
+// "code":"GatewayTimeout","message":"The gateway did not receive a response from 'Microsoft.ApiManagement' within the specified time period."
 const runOperationInBatches = async (items, batchSize, operation) => {
     let currentBatch = [];
     const batches = items.reduce((agg, item, index) => {

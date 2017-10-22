@@ -30,13 +30,15 @@ inputs:
     file:
       description: |
          json properties file in the following format
-         '{
+         ```json
+         {
             "<propertyName>": {
                 "value": "<propertyValue>",
                 "tags": ["<tag1>", "<tag2>"],
                 "isSecret": true | false
             },
-          }'
+          }
+          ```
           see [sampleProperties.json](sampleProperties.json) for example
   loginType:
     string:
@@ -48,7 +50,9 @@ run:
   container:
     image: { ref: 'opspecpkgs/azure.apimanagement.properties.set:2.0.1' }
     cmd: [node, /index.js]
-    files: { /index.js, /properties.json: properties }
+    files:
+      /index.js:
+      /properties.json: $(properties)
     envVars:
       subscriptionId:
       loginId:

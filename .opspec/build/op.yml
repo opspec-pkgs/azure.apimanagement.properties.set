@@ -8,9 +8,6 @@ inputs:
   pkg:
     dir:
       default: .
-  dockerfile:
-    file:
-      default: /Dockerfile
 run:
   serial:
     - op:
@@ -18,5 +15,7 @@ run:
         inputs: { pkg }
     - op:
         pkg: { ref: github.com/opspec-pkgs/docker.image.build#1.1.0 }
-        inputs: { dockerfile, imageName: 'opspecpkgs/azure.apimanagement.properties.set:$(version)' }
+        inputs:
+          dockerfile: $(/Dockerfile)
+          imageName: 'opspecpkgs/azure.apimanagement.properties.set:$(version)'
         outputs: { imageTar }

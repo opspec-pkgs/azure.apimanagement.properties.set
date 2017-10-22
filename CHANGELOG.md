@@ -5,12 +5,24 @@ All notable changes will be documented in this file in accordance with
 
 ## \[Unreleased]
 
-## \[1.0.0] - 2017-07-21
+## \[2.0.2] - 2017-10-22
 
-## \[2.0.0] - 2017-07-31
 ### Changed
-- pkg now expects properties to be input as a single json file (see 'sampleProperties.json' for example)
+
+- update input description to proper markdown
 
 ## \[2.0.1] - 2017-10-19
+
 ### Changed
+
 - updates are made in batches with a default size of 10
+
+## \[2.0.0] - 2017-07-31
+
+### Changed
+
+- pkg now expects properties to be input as a single json file (see
+  'sampleProperties.json' for example)
+
+## \[1.0.0] - 2017-07-21
+

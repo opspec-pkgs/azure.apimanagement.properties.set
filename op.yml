@@ -45,14 +45,15 @@ inputs:
       constraints: { enum: [user, sp]}
       description: type of login; 'user' (default) or 'sp' for service principal
       default: user
-version: 2.0.1
+version: 2.0.3
 run:
   container:
-    image: { ref: 'opspecpkgs/azure.apimanagement.properties.set:2.0.1' }
+    image: { ref: 'opspecpkgs/azure.apimanagement.properties.set:2.0.3' }
     cmd: [node, /index.js]
     files:
       /index.js:
       /properties.json: $(properties)
+      /propertyLister.js:
     envVars:
       subscriptionId:
       loginId:

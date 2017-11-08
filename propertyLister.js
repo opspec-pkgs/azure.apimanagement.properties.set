@@ -1,4 +1,9 @@
+const msRestAzure = require('ms-rest-azure');
+const { URL } = require('url');
 class PropertyLister {
+    constructor(){
+        this.list = null;
+    }
     /**
      * Lists existing properties.
      * note: results will be retrieved only once; subsequent calls will return cached results
@@ -25,13 +30,15 @@ class PropertyLister {
             };
 
             console.log('listing api management properties');
-            const result = await azureServiceClient.sendRequest(options);
+            this.list = azureServiceClient.sendRequest(options)
+            .then(result => {
+                if (result.error) {
+                    throw new Error(JSON.stringify(propertyList.error));
+                }
 
-            if (result.error) {
-                throw new Error(JSON.stringify(propertyList.error));
-            }
-            this.list = result.value;
-            console.log('api management properties listed');
+                console.log('api management properties listed');
+                return result.value;
+            });
         }
         return this.list;
     }

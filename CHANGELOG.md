@@ -5,6 +5,12 @@ All notable changes will be documented in this file in accordance with
 
 ## \[Unreleased]
 
+## \[2.0.3] - 2017-11-08
+
+### Changed
+
+- update pkg to allow for differences between property displayName and PropertyId (used in the url)
+
 ## \[2.0.2] - 2017-10-22
 
 ### Changed

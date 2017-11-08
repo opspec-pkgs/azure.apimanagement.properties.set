@@ -38,7 +38,6 @@ const getPropertyId = async (credentials, propertyName) => {
 };
 
 const createOrUpdate = async (credentials, property) => {
-    console.log('create/update api management property');
     const propertyId = await getPropertyId(credentials, property.name);
 
     const url = new URL(

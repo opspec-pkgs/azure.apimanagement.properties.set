@@ -1,6 +1,7 @@
 const msRestAzure = require('ms-rest-azure');
 const { URL } = require('url');
 const properties = require('/properties.json');
+const propertyLister = require('/propertyLister');
 
 const login = async () => {
     console.log('logging in');
@@ -23,35 +24,22 @@ const login = async () => {
     return response;
 };
 
-const registerProvider = async (credentials) => {
-    console.log('registering resource provider Microsoft.ApiManagement');
+const getPropertyId = async (credentials, propertyName) => {
+    const propertyList = await propertyLister.listProperties(credentials);
 
-    const url = new URL(
-        'https://management.azure.com/' +
-        `subscriptions/${process.env.subscriptionId}/` +
-        'providers/Microsoft.ApiManagement/register' +
-        '?api-version=2017-03-01');
-
-    // see https://github.com/Azure/azure-sdk-for-node/tree/bf6473eae7faca1ca1cf1375ee53c6fc214ca1b1/runtime/ms-rest-azure#using-the-generic-authenticated-azureserviceclient-to-make-custom-requests-to-azure
-    const azureServiceClient = new msRestAzure.AzureServiceClient(credentials);
-
-    let options = {
-        method: 'POST',
-        url: url.href
-    };
-
-    const result = await azureServiceClient.sendRequest(options);
-
-    if (result.error){
-        throw new Error(JSON.stringify(result.error));
+    for (let i = 0; i < propertyList.length; i++) {
+        const item = propertyList[i];
+        if (item.properties.displayName === propertyName) {
+            return item.name;
+        }
     }
 
-    console.log('registering resource provider Microsoft.ApiManagement successful');
+    return propertyName;
 };
 
-const createOrUpdate = async (credentials, property, isSecondAttempt = false) => {
-
+const createOrUpdate = async (credentials, property) => {
     console.log('create/update api management property');
+    const propertyId = await getPropertyId(credentials, property.name);
 
     const url = new URL(
         'https://management.azure.com/' +
@@ -59,7 +47,7 @@ const createOrUpdate = async (credentials, property, isSecondAttempt = false) =>
         `resourceGroups/${process.env.resourceGroup}/` +
         'providers/Microsoft.ApiManagement/' +
         `service/${process.env.apiManagementServiceName}/` +
-        `properties/${property.name}` +
+        `properties/${propertyId}` +
         '?api-version=2017-03-01');
 
     // see https://github.com/Azure/azure-sdk-for-node/tree/bf6473eae7faca1ca1cf1375ee53c6fc214ca1b1/runtime/ms-rest-azure#using-the-generic-authenticated-azureserviceclient-to-make-custom-requests-to-azure
@@ -81,19 +69,12 @@ const createOrUpdate = async (credentials, property, isSecondAttempt = false) =>
     const result = await azureServiceClient.sendRequest(options);
 
     if (result.error){
-        if (result.error.code === 'MissingSubscriptionRegistration' && isSecondAttempt) {
-            // provider not registered; register & retry create, but only once
-            console.log("Microsoft.ApiManagement provider not registered for subscription");
-            await registerProvider(credentials);
-            await createOrUpdate(credentials, property, true);
-            return;
-        }
         throw new Error(JSON.stringify(result.error));
     }
     console.log('create/update api management property successful');
 };
 
-// utilizing batches to prevent the following error when updating large number of properties: 
+// utilizing batches to prevent the following error when updating large number of properties:
 // "code":"GatewayTimeout","message":"The gateway did not receive a response from 'Microsoft.ApiManagement' within the specified time period."
 const runOperationInBatches = async (items, batchSize, operation) => {
     let currentBatch = [];
@@ -102,7 +83,7 @@ const runOperationInBatches = async (items, batchSize, operation) => {
             agg.push(currentBatch);
             currentBatch = [];
         }
-        currentBatch.push(item)
+        currentBatch.push(item);
         return agg;
     }, []);
     if (currentBatch) {
@@ -113,9 +94,8 @@ const runOperationInBatches = async (items, batchSize, operation) => {
     }
 };
 
-Promise.resolve()
-    .then(login)
-    .then((creds) => {
+login()
+    .then(creds => {
         const props = Object.keys(properties);
         return runOperationInBatches(props, 10, (p) => {
             const currentProperty = Object.assign({ name: p }, properties[p]);

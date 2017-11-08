@@ -53,6 +53,7 @@ run:
     files:
       /index.js:
       /properties.json: $(properties)
+      /propertyLister.js:
     envVars:
       subscriptionId:
       loginId:

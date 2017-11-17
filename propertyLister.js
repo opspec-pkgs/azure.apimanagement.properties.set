@@ -32,8 +32,9 @@ class PropertyLister {
             console.log('listing api management properties');
             this.list = azureServiceClient.sendRequest(options)
             .then(result => {
+
                 if (result.error) {
-                    throw new Error(JSON.stringify(propertyList.error));
+                    throw new Error(JSON.stringify(result.error));
                 }
 
                 console.log('api management properties listed');

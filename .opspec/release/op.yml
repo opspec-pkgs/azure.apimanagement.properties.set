@@ -35,7 +35,7 @@ run:
         outputs:
           imageTar:
     - op:
-        pkg: { ref: github.com/opspec-pkgs/docker.image.push#1.1.0 }
+        pkg: { ref: github.com/opspec-pkgs/docker.image.push#2.0.0 }
         inputs:
           imageTar:
           imageName: 'opspecpkgs/azure.apimanagement.properties.set:$(version)'

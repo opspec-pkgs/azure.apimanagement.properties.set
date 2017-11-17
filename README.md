@@ -15,20 +15,20 @@ format
 ## install
 
 ```shell
-opctl pkg install github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.3
+opctl pkg install github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.4
 ```
 
 ## run
 
 ```
-opctl run github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.3
+opctl run github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.4
 ```
 
 ## compose
 
 ```yaml
 op:
-  pkg: { ref: github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.3 }
+  pkg: { ref: github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.4 }
   inputs:
     subscriptionId:
     loginId:

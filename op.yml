@@ -45,7 +45,7 @@ inputs:
       constraints: { enum: [user, sp]}
       description: type of login; 'user' (default) or 'sp' for service principal
       default: user
-version: 2.0.3
+version: 2.0.4
 run:
   container:
     image: { ref: 'opspecpkgs/azure.apimanagement.properties.set:2.0.3' }

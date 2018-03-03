@@ -1,30 +1,30 @@
 [![Build Status](https://travis-ci.org/opspec-pkgs/azure.apimanagement.properties.set.svg?branch=master)](https://travis-ci.org/opspec-pkgs/azure.apimanagement.properties.set)
 
+<img src="icon.svg" alt="icon" height="100px">
+
 # Problem statement
 
 sets azure api management properties (AKA named values)
 
 # Format
 
-this version of the pkg is in
-[![opspec 0.1.5](https://img.shields.io/badge/opspec-0.1.5-brightgreen.svg?colorA=6b6b6b&colorB=fc16be)](https://opspec.io/0.1.5/packages.html)
-format
+this version of the pkg is in [![opspec 0.1.5](https://img.shields.io/badge/opspec-0.1.5-brightgreen.svg?colorA=6b6b6b&colorB=fc16be)](https://opspec.io/0.1.5/packages.html) format
 
 # Example usage
 
-## install
+## Install
 
 ```shell
 opctl pkg install github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.4
 ```
 
-## run
+## Run
 
 ```
 opctl run github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.4
 ```
 
-## compose
+## Compose
 
 ```yaml
 op:
@@ -37,9 +37,8 @@ op:
     resourceGroup:
     apiManagementServiceName:
     properties:
-    # begin optional args
+    # params w/ default
     loginType:
-    # end optional args
 ```
 
 # Support

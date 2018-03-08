@@ -15,20 +15,20 @@ this version of the pkg is in [![opspec 0.1.5](https://img.shields.io/badge/opsp
 ## Install
 
 ```shell
-opctl pkg install github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.4
+opctl pkg install github.com/opspec-pkgs/azure.apimanagement.properties.set#2.1.0
 ```
 
 ## Run
 
 ```
-opctl run github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.4
+opctl run github.com/opspec-pkgs/azure.apimanagement.properties.set#2.1.0
 ```
 
 ## Compose
 
 ```yaml
 op:
-  pkg: { ref: github.com/opspec-pkgs/azure.apimanagement.properties.set#2.0.4 }
+  pkg: { ref: github.com/opspec-pkgs/azure.apimanagement.properties.set#2.1.0 }
   inputs:
     subscriptionId:
     loginId:
